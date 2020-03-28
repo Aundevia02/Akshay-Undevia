@@ -1,0 +1,37 @@
+from tkinter import *
+
+
+def bonacci_helper(i, num1, num2, j):
+    sum = num1 + num2
+    myLabel = Label(root, text=f'{i}: {sum}, {sum / num2}')
+    myLabel.pack()
+    if j < 100:
+        bonacci_helper(i + 1, num2, sum, j + 1)
+
+
+def bonacci(num1, num2):
+    myLabel = Label(root, text=f'1: {num1}')
+    myLabel.pack()
+    myLabel2 = Label(root, text=f'2: {num2}, {num2 / num1}')
+    myLabel2.pack()
+    bonacci_helper(3, num1, num2, 0)
+
+
+root = Tk()
+
+myLabel = Label(root, text='Enter two values:')
+myLabel.pack()
+
+e = Entry(root, width=50)
+e.pack()
+
+
+def myClick():
+    num1, num2 = e.get().split()
+    bonacci(int(num1), int(num2))
+
+
+myButton = Button(root, text='Enter', command=myClick)
+myButton.pack()
+
+root.mainloop()
